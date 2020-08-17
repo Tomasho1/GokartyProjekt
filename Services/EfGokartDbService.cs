@@ -19,15 +19,20 @@ namespace GokartyProjekt.Services
 
         public LapOnGivenTrackResponse FastestLapOnGivenTrack(int IdTor)
         {
-            var track = _context.Tory.SingleOrDefault(t => t.IdTor == IdTor);
+            var track = _context.Tory.FirstOrDefault(t => t.IdTor == IdTor);
 
             if (track == null)
             {
-                throw new NoTrackException($"Track with id = {IdTor} does not exist");
+                throw new NoTrackException($"Track with id = {IdTor} does not exist!");
             }
 
-            var allLaps = _context.Przejazdy.Where(p => p.IdTor == track.IdTor);
-            var fastestLap = allLaps.OrderBy(l => l.Czas).FirstOrDefault();
+            var fastestLap = _context.Przejazdy.Where(p => p.IdTor == track.IdTor).OrderBy(l => l.Czas).FirstOrDefault();
+
+            if (fastestLap == null)
+            {
+                throw new NoLapsMadeOnTrackException($"No laps made on track with id = {IdTor}!");
+            }
+
             var driver = _context.Kierowcy.SingleOrDefault(k => k.IdKierowca == fastestLap.IdKierowca);
             var gokart = _context.Gokarty.SingleOrDefault(g => g.IdGokart == fastestLap.IdGokart);
 
