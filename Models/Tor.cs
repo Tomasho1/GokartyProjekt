@@ -8,7 +8,7 @@ namespace GokartyProjekt.Models
     public class Tor
     {
         public int IdTor { get; set; }
-        public int Nazwa { get; set; }
+        public string Nazwa { get; set; }
         public double Dlugosc { get; set; }
         public double StawkaGodzinowa { get; set; }
         public int IdAdres { get; set; }

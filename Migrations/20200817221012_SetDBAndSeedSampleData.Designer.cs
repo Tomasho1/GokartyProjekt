@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GokartyProjekt.Migrations
 {
     [DbContext(typeof(GokartyDbContext))]
-    [Migration("20200817194357_SettingDatabase")]
-    partial class SettingDatabase
+    [Migration("20200817221012_SetDBAndSeedSampleData")]
+    partial class SetDBAndSeedSampleData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,29 @@ namespace GokartyProjekt.Migrations
                     b.HasKey("IdAdres");
 
                     b.ToTable("Adresy");
+
+                    b.HasData(
+                        new
+                        {
+                            IdAdres = 1,
+                            Miasto = "Monza",
+                            Panstwo = "Włochy",
+                            Ulica = "Viale di Vedano, 5"
+                        },
+                        new
+                        {
+                            IdAdres = 2,
+                            Miasto = "Stavelot",
+                            Panstwo = "Belgia",
+                            Ulica = "Route du Circuit 55"
+                        },
+                        new
+                        {
+                            IdAdres = 3,
+                            Miasto = "Zandvoort",
+                            Panstwo = "Holandia",
+                            Ulica = "Burgemeester van Alphenstraat 108"
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Gokart", b =>
@@ -86,6 +109,38 @@ namespace GokartyProjekt.Migrations
                     b.HasIndex("IdTor");
 
                     b.ToTable("Gokarty");
+
+                    b.HasData(
+                        new
+                        {
+                            IdGokart = 1,
+                            IdNadwozie = 2,
+                            IdPodwozie = 2,
+                            IdSilnik = 2,
+                            IdTor = 3,
+                            Nazwa = "Junior",
+                            Waga = 150
+                        },
+                        new
+                        {
+                            IdGokart = 2,
+                            IdNadwozie = 1,
+                            IdPodwozie = 1,
+                            IdSilnik = 1,
+                            IdTor = 1,
+                            Nazwa = "Standard",
+                            Waga = 160
+                        },
+                        new
+                        {
+                            IdGokart = 3,
+                            IdNadwozie = 3,
+                            IdPodwozie = 3,
+                            IdSilnik = 3,
+                            IdTor = 2,
+                            Nazwa = "Standard+",
+                            Waga = 180
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Kierowca", b =>
@@ -120,6 +175,35 @@ namespace GokartyProjekt.Migrations
                         .IsUnique();
 
                     b.ToTable("Kierowcy");
+
+                    b.HasData(
+                        new
+                        {
+                            IdKierowca = 1,
+                            IdUzytkownik = 1,
+                            Imie = "Tomasz",
+                            Nazwisko = "Kowalski",
+                            NumerKarty = "k1704",
+                            Wiek = 21
+                        },
+                        new
+                        {
+                            IdKierowca = 2,
+                            IdUzytkownik = 2,
+                            Imie = "Marcin",
+                            Nazwisko = "Pędziwiatr",
+                            NumerKarty = "k898",
+                            Wiek = 16
+                        },
+                        new
+                        {
+                            IdKierowca = 3,
+                            IdUzytkownik = 3,
+                            Imie = "Jakub",
+                            Nazwisko = "Mazur",
+                            NumerKarty = "k19",
+                            Wiek = 18
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.KierowcaSponsor", b =>
@@ -127,7 +211,7 @@ namespace GokartyProjekt.Migrations
                     b.Property<int>("IdKierowca")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdSponsor")
+                    b.Property<int?>("IdSponsor")
                         .HasColumnType("int");
 
                     b.HasKey("IdKierowca", "IdSponsor");
@@ -135,6 +219,23 @@ namespace GokartyProjekt.Migrations
                     b.HasIndex("IdSponsor");
 
                     b.ToTable("KierowcaSponsor");
+
+                    b.HasData(
+                        new
+                        {
+                            IdKierowca = 1,
+                            IdSponsor = 2
+                        },
+                        new
+                        {
+                            IdKierowca = 2,
+                            IdSponsor = 1
+                        },
+                        new
+                        {
+                            IdKierowca = 3,
+                            IdSponsor = 3
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Nadwozie", b =>
@@ -150,6 +251,23 @@ namespace GokartyProjekt.Migrations
                     b.HasKey("IdNadwozie");
 
                     b.ToTable("Nadwozia");
+
+                    b.HasData(
+                        new
+                        {
+                            IdNadwozie = 1,
+                            Producent = "Alfa Romeo"
+                        },
+                        new
+                        {
+                            IdNadwozie = 2,
+                            Producent = "Honda"
+                        },
+                        new
+                        {
+                            IdNadwozie = 3,
+                            Producent = "Chevrolet"
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Podwozie", b =>
@@ -165,6 +283,23 @@ namespace GokartyProjekt.Migrations
                     b.HasKey("IdPodwozie");
 
                     b.ToTable("Podwozia");
+
+                    b.HasData(
+                        new
+                        {
+                            IdPodwozie = 1,
+                            Producent = "Alfa Romeo"
+                        },
+                        new
+                        {
+                            IdPodwozie = 2,
+                            Producent = "Honda"
+                        },
+                        new
+                        {
+                            IdPodwozie = 3,
+                            Producent = "Chevrolet"
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Pracownik", b =>
@@ -207,6 +342,41 @@ namespace GokartyProjekt.Migrations
                         .IsUnique();
 
                     b.ToTable("Pracownicy");
+
+                    b.HasData(
+                        new
+                        {
+                            IdPracownik = 1,
+                            IdTor = 1,
+                            IdUzytkownik = 1,
+                            Imie = "Paweł",
+                            Nazwisko = "Wójcik",
+                            Stanowisko = "Recepcjonista",
+                            Wiek = 25,
+                            Wynagrodzenie = 3300m
+                        },
+                        new
+                        {
+                            IdPracownik = 2,
+                            IdTor = 2,
+                            IdUzytkownik = 2,
+                            Imie = "Robert",
+                            Nazwisko = "Walczak",
+                            Stanowisko = "Instruktor",
+                            Wiek = 31,
+                            Wynagrodzenie = 4500m
+                        },
+                        new
+                        {
+                            IdPracownik = 3,
+                            IdTor = 3,
+                            IdUzytkownik = 3,
+                            Imie = "Krzysztof",
+                            Nazwisko = "Błyskawica",
+                            Stanowisko = "Kierownik toru",
+                            Wiek = 28,
+                            Wynagrodzenie = 5500m
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Przejazd", b =>
@@ -237,6 +407,80 @@ namespace GokartyProjekt.Migrations
                     b.HasIndex("IdTor");
 
                     b.ToTable("Przejazdy");
+
+                    b.HasData(
+                        new
+                        {
+                            IdPrzejazd = 1,
+                            Czas = new TimeSpan(0, 0, 4, 25, 732),
+                            IdGokart = 3,
+                            IdKierowca = 1,
+                            IdTor = 1
+                        },
+                        new
+                        {
+                            IdPrzejazd = 2,
+                            Czas = new TimeSpan(0, 0, 4, 27, 319),
+                            IdGokart = 3,
+                            IdKierowca = 1,
+                            IdTor = 1
+                        },
+                        new
+                        {
+                            IdPrzejazd = 3,
+                            Czas = new TimeSpan(0, 0, 4, 25, 588),
+                            IdGokart = 3,
+                            IdKierowca = 1,
+                            IdTor = 1
+                        },
+                        new
+                        {
+                            IdPrzejazd = 4,
+                            Czas = new TimeSpan(0, 0, 3, 59, 711),
+                            IdGokart = 3,
+                            IdKierowca = 2,
+                            IdTor = 3
+                        },
+                        new
+                        {
+                            IdPrzejazd = 5,
+                            Czas = new TimeSpan(0, 0, 3, 59, 646),
+                            IdGokart = 3,
+                            IdKierowca = 2,
+                            IdTor = 3
+                        },
+                        new
+                        {
+                            IdPrzejazd = 6,
+                            Czas = new TimeSpan(0, 0, 4, 2, 11),
+                            IdGokart = 3,
+                            IdKierowca = 2,
+                            IdTor = 3
+                        },
+                        new
+                        {
+                            IdPrzejazd = 7,
+                            Czas = new TimeSpan(0, 0, 5, 38, 412),
+                            IdGokart = 3,
+                            IdKierowca = 3,
+                            IdTor = 2
+                        },
+                        new
+                        {
+                            IdPrzejazd = 8,
+                            Czas = new TimeSpan(0, 0, 5, 41, 774),
+                            IdGokart = 3,
+                            IdKierowca = 3,
+                            IdTor = 2
+                        },
+                        new
+                        {
+                            IdPrzejazd = 9,
+                            Czas = new TimeSpan(0, 0, 5, 37, 292),
+                            IdGokart = 3,
+                            IdKierowca = 3,
+                            IdTor = 2
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Silnik", b =>
@@ -259,6 +503,29 @@ namespace GokartyProjekt.Migrations
                     b.HasKey("IdSilnik");
 
                     b.ToTable("Silniki");
+
+                    b.HasData(
+                        new
+                        {
+                            IdSilnik = 1,
+                            Moc = 20,
+                            Pojemnosc = 600.0,
+                            Producent = "Mercedes"
+                        },
+                        new
+                        {
+                            IdSilnik = 2,
+                            Moc = 15,
+                            Pojemnosc = 350.0,
+                            Producent = "Audi"
+                        },
+                        new
+                        {
+                            IdSilnik = 3,
+                            Moc = 25,
+                            Pojemnosc = 800.0,
+                            Producent = "Ferrari"
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Sponsor", b =>
@@ -274,6 +541,23 @@ namespace GokartyProjekt.Migrations
                     b.HasKey("IdSponsor");
 
                     b.ToTable("Sponsorzy");
+
+                    b.HasData(
+                        new
+                        {
+                            IdSponsor = 1,
+                            Nazwa = "ORLEN"
+                        },
+                        new
+                        {
+                            IdSponsor = 2,
+                            Nazwa = "STS"
+                        },
+                        new
+                        {
+                            IdSponsor = 3,
+                            Nazwa = "PEKAO"
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Sprzet", b =>
@@ -286,8 +570,8 @@ namespace GokartyProjekt.Migrations
                     b.Property<int?>("IdKierowca")
                         .HasColumnType("int");
 
-                    b.Property<string>("Koszt")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Koszt")
+                        .HasColumnType("float");
 
                     b.Property<string>("Nazwa")
                         .IsRequired()
@@ -299,6 +583,28 @@ namespace GokartyProjekt.Migrations
                     b.HasIndex("IdKierowca");
 
                     b.ToTable("Sprzety");
+
+                    b.HasData(
+                        new
+                        {
+                            IdSprzet = 1,
+                            IdKierowca = 1,
+                            Koszt = 25.0,
+                            Nazwa = "Kask czerwony mały"
+                        },
+                        new
+                        {
+                            IdSprzet = 2,
+                            Koszt = 15.0,
+                            Nazwa = "Rękawice czarne normalne"
+                        },
+                        new
+                        {
+                            IdSprzet = 3,
+                            IdKierowca = 3,
+                            Koszt = 10.0,
+                            Nazwa = "Kominiarka normalna"
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Tor", b =>
@@ -314,8 +620,9 @@ namespace GokartyProjekt.Migrations
                     b.Property<int>("IdAdres")
                         .HasColumnType("int");
 
-                    b.Property<int>("Nazwa")
-                        .HasColumnType("int")
+                    b.Property<string>("Nazwa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<decimal>("StawkaGodzinowa")
@@ -327,6 +634,32 @@ namespace GokartyProjekt.Migrations
                         .IsUnique();
 
                     b.ToTable("Tory");
+
+                    b.HasData(
+                        new
+                        {
+                            IdTor = 1,
+                            Dlugosc = 5.7930000000000001,
+                            IdAdres = 1,
+                            Nazwa = "Autodromo Nazionale di Monza",
+                            StawkaGodzinowa = 400m
+                        },
+                        new
+                        {
+                            IdTor = 2,
+                            Dlugosc = 7.0039999999999996,
+                            IdAdres = 2,
+                            Nazwa = "Circuit de Spa-Francorchamps",
+                            StawkaGodzinowa = 450m
+                        },
+                        new
+                        {
+                            IdTor = 3,
+                            Dlugosc = 4.2519999999999998,
+                            IdAdres = 3,
+                            Nazwa = "Circuit Zandvoort",
+                            StawkaGodzinowa = 350m
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Uzytkownik", b =>
@@ -347,6 +680,44 @@ namespace GokartyProjekt.Migrations
                     b.HasKey("IdUzytkownik");
 
                     b.ToTable("Uzytkownicy");
+
+                    b.HasData(
+                        new
+                        {
+                            IdUzytkownik = 1,
+                            Haslo = "kowalski12",
+                            Login = "tkowalski"
+                        },
+                        new
+                        {
+                            IdUzytkownik = 2,
+                            Haslo = "pedziwiatr2016",
+                            Login = "mpedzi"
+                        },
+                        new
+                        {
+                            IdUzytkownik = 3,
+                            Haslo = "mazurek",
+                            Login = "jmazur"
+                        },
+                        new
+                        {
+                            IdUzytkownik = 4,
+                            Haslo = "wojcik95",
+                            Login = "pwojcik"
+                        },
+                        new
+                        {
+                            IdUzytkownik = 5,
+                            Haslo = "walczakxd",
+                            Login = "rwalczak"
+                        },
+                        new
+                        {
+                            IdUzytkownik = 6,
+                            Haslo = "krzysiekblyskawica",
+                            Login = "krzysiu44"
+                        });
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Gokart", b =>
