@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GokartyProjekt.Models;
+using GokartyProjekt.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,7 @@ namespace GokartyProjekt
                 options.UseSqlServer("Data Source=db-mssql;Initial Catalog=s18929;Integrated Security=True");
 
             });
-            services.AddControllers();
+            services.AddScoped<IGokartDbService, EfGokartDbService>();
             services.AddControllers();
         }
 
