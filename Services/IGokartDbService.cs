@@ -9,6 +9,8 @@ namespace GokartyProjekt.Services
     public interface IGokartDbService
     {
         public LapOnGivenTrackResponse FastestLapOnGivenTrack(int IdTor);
+        // TODO: Ręczne dodawanie czasów, rekordy miesiąca, roku, dnia (wymaga rozszerzenia przejazdów)
+
 
     }
 }

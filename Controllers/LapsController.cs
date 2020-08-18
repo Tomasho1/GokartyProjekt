@@ -21,7 +21,7 @@ namespace GokartyProjekt.Controllers
         }
 
         [HttpGet]
-
+        
         public IActionResult FastestLapOnGivenTrack(int IdTor)
         {
             try

@@ -9,6 +9,7 @@ namespace GokartyProjekt.Models
     {
         public int IdPrzejazd { get; set; }
         public TimeSpan Czas { get; set; }
+        public DateTime DataPrzejazdu { get; set; }
         public int IdTor { get; set; }
         public int IdGokart { get; set; }
         public int IdKierowca { get; set; }

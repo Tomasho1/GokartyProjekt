@@ -182,6 +182,10 @@ namespace GokartyProjekt.Models
                     .HasColumnType("time")
                     .IsRequired();
 
+                opt.Property(p => p.DataPrzejazdu)
+                    .HasColumnType("datetime")
+                    .IsRequired();
+
                 opt.HasOne(p => p.Tor)
                     .WithMany(p => p.Przejazdy)
                     .HasForeignKey(p => p.IdTor);
@@ -460,6 +464,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 1,
                 Czas = new TimeSpan (0, 0, 4, 25, 732),
+                DataPrzejazdu = new DateTime(2020, 06, 18, 11, 33, 47),
                 IdTor = 1,
                 IdGokart = 3,
                 IdKierowca = 1
@@ -469,6 +474,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 2,
                 Czas = new TimeSpan(0, 0, 4, 27, 319),
+                DataPrzejazdu = new DateTime(2019, 12, 20, 17, 02, 13),
                 IdTor = 1,
                 IdGokart = 3,
                 IdKierowca = 1
@@ -478,6 +484,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 3,
                 Czas = new TimeSpan(0, 0, 4, 25, 588),
+                DataPrzejazdu = new DateTime(2019, 10, 13, 16, 45, 38),
                 IdTor = 1,
                 IdGokart = 3,
                 IdKierowca = 1
@@ -487,6 +494,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 4,
                 Czas = new TimeSpan(0, 0, 3, 59, 711),
+                DataPrzejazdu = new DateTime(2020, 07, 18, 14, 07, 16),
                 IdTor = 3,
                 IdGokart = 3,
                 IdKierowca = 2,
@@ -496,6 +504,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 5,
                 Czas = new TimeSpan(0, 0, 3, 59, 646),
+                DataPrzejazdu = new DateTime(2020, 07, 18, 14, 12, 29),
                 IdTor = 3,
                 IdGokart = 3,
                 IdKierowca = 2,
@@ -505,6 +514,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 6,
                 Czas = new TimeSpan(0, 0, 4, 02, 011),
+                DataPrzejazdu = new DateTime(2018, 10, 23, 20, 00, 36),
                 IdTor = 3,
                 IdGokart = 3,
                 IdKierowca = 2,
@@ -514,6 +524,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 7,
                 Czas = new TimeSpan(0, 0, 05, 38, 412),
+                DataPrzejazdu = new DateTime(2019, 08, 30, 15, 56, 04),
                 IdTor = 2,
                 IdGokart = 3,
                 IdKierowca = 3,
@@ -524,6 +535,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 8,
                 Czas = new TimeSpan(0, 0, 05, 41, 774),
+                DataPrzejazdu = new DateTime(2019, 09, 16, 09, 14, 36),
                 IdTor = 2,
                 IdGokart = 3,
                 IdKierowca = 3,
@@ -532,6 +544,7 @@ namespace GokartyProjekt.Models
             {
                 IdPrzejazd = 9,
                 Czas = new TimeSpan(0, 0, 05, 37, 292),
+                DataPrzejazdu = new DateTime(2020, 08, 17, 12, 37, 40),
                 IdTor = 2,
                 IdGokart = 3,
                 IdKierowca = 3,
