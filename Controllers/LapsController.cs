@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GokartyProjekt.DTOs.Requests;
 using GokartyProjekt.Exceptions;
+using GokartyProjekt.Models;
 using GokartyProjekt.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,12 +33,12 @@ namespace GokartyProjekt.Controllers
             }
             catch (NoTrackException exc)
             {
-                return BadRequest(exc.Message);
+                return NotFound(exc.Message);
             }
 
             catch (NoLapsMadeOnTrackException exc)
             {
-                return NotFound(exc.Message);
+                return BadRequest(exc.Message);
             }
         }
 
@@ -51,7 +53,7 @@ namespace GokartyProjekt.Controllers
             }
             catch (NoTrackException exc)
             {
-                return BadRequest(exc.Message);
+                return NotFound(exc.Message);
             }
 
             catch (NoLapsMadeOnTrackException exc)
@@ -70,16 +72,44 @@ namespace GokartyProjekt.Controllers
             }
             catch (NoDriverException exc)
             {
-                return BadRequest(exc.Message);
+                return NotFound(exc.Message);
             }
             catch (NoTrackException exc)
             {
-                return BadRequest(exc.Message);
+                return NotFound(exc.Message);
             }
             catch (NoLapsMadeOnTrackException exc)
             {
+                return BadRequest(exc.Message);
+            }
+        }
+
+        [Route("add")]
+        [HttpPost]
+
+        public IActionResult AddNewLapTime(AddNewLapTimeRequest request)
+        {
+            try
+            {
+                _service.AddNewLapTime(request);
+                return Ok();
+            }
+            catch (NoTrackException exc)
+            {
                 return NotFound(exc.Message);
             }
+            catch (NoDriverException exc)
+            {
+                return NotFound(exc.Message);
+            }
+            catch (NoGokartException exc)
+            {
+                return NotFound(exc.Message);
+            }
+            catch (DateIsLaterThanNowException exc)
+            {
+                return BadRequest(exc.Message);
+            } 
         }
     }
 }
