@@ -20,8 +20,8 @@ namespace GokartyProjekt.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        
+        [Route("track/{IdTor}")]
+        [HttpGet]  
         public IActionResult FastestLapOnGivenTrack(int IdTor)
         {
             try
@@ -32,6 +32,53 @@ namespace GokartyProjekt.Controllers
             catch (NoTrackException exc)
             {
                 return BadRequest(exc.Message);
+            }
+
+            catch (NoLapsMadeOnTrackException exc)
+            {
+                return NotFound(exc.Message);
+            }
+        }
+
+        [Route("track/month/{IdTor}")]
+        [HttpGet]
+        public IActionResult FastestLapOnGivenTrackInMonth(int IdTor)
+        {
+            try
+            {
+                var response = _service.FastestLapOnGivenTrackInMonth(IdTor);
+                return Ok(response);
+            }
+            catch (NoTrackException exc)
+            {
+                return BadRequest(exc.Message);
+            }
+
+            catch (NoLapsMadeOnTrackException exc)
+            {
+                return NotFound(exc.Message);
+            }
+        }
+        [Route("pb/{IdKierowca}/{IdTor}")]
+        [HttpGet]
+        public IActionResult PersonalBestOnGivenTrack(int IdKierowca, int IdTor)
+        {
+            try
+            {
+                var response = _service.PersonalBestOnGivenTrack(IdKierowca, IdTor);
+                return Ok(response);
+            }
+            catch (NoDriverException exc)
+            {
+                return BadRequest(exc.Message);
+            }
+            catch (NoTrackException exc)
+            {
+                return BadRequest(exc.Message);
+            }
+            catch (NoLapsMadeOnTrackException exc)
+            {
+                return NotFound(exc.Message);
             }
         }
     }

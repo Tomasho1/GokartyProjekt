@@ -1,4 +1,5 @@
 ﻿using GokartyProjekt.DTOs;
+using GokartyProjekt.DTOs.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,11 @@ namespace GokartyProjekt.Services
 {
     public interface IGokartDbService
     {
-        public LapOnGivenTrackResponse FastestLapOnGivenTrack(int IdTor);
-        // TODO: Ręczne dodawanie czasów, rekordy miesiąca, roku, dnia (wymaga rozszerzenia przejazdów)
+        public UniversalFastestLapOnGivenTrackResponse FastestLapOnGivenTrack(int IdTor);
+        public UniversalFastestLapOnGivenTrackResponse FastestLapOnGivenTrackInMonth(int IdTor);
+        public PersonalBestOnGivenTrackResponse PersonalBestOnGivenTrack(int IdKierowca, int IdTor);
+        
+        // TODO: Ręczne dodawanie czasów, porównywanie z innymi kierowcami
 
 
     }

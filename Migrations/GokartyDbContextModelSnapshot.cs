@@ -387,6 +387,9 @@ namespace GokartyProjekt.Migrations
                     b.Property<TimeSpan>("Czas")
                         .HasColumnType("time");
 
+                    b.Property<DateTime>("DataPrzejazdu")
+                        .HasColumnType("datetime");
+
                     b.Property<int>("IdGokart")
                         .HasColumnType("int");
 
@@ -411,6 +414,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 1,
                             Czas = new TimeSpan(0, 0, 4, 25, 732),
+                            DataPrzejazdu = new DateTime(2020, 6, 18, 11, 33, 47, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 1,
                             IdTor = 1
@@ -419,6 +423,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 2,
                             Czas = new TimeSpan(0, 0, 4, 27, 319),
+                            DataPrzejazdu = new DateTime(2019, 12, 20, 17, 2, 13, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 1,
                             IdTor = 1
@@ -427,6 +432,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 3,
                             Czas = new TimeSpan(0, 0, 4, 25, 588),
+                            DataPrzejazdu = new DateTime(2019, 10, 13, 16, 45, 38, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 1,
                             IdTor = 1
@@ -435,6 +441,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 4,
                             Czas = new TimeSpan(0, 0, 3, 59, 711),
+                            DataPrzejazdu = new DateTime(2020, 7, 18, 14, 7, 16, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 2,
                             IdTor = 3
@@ -443,6 +450,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 5,
                             Czas = new TimeSpan(0, 0, 3, 59, 646),
+                            DataPrzejazdu = new DateTime(2020, 7, 18, 14, 12, 29, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 2,
                             IdTor = 3
@@ -451,6 +459,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 6,
                             Czas = new TimeSpan(0, 0, 4, 2, 11),
+                            DataPrzejazdu = new DateTime(2018, 10, 23, 20, 0, 36, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 2,
                             IdTor = 3
@@ -459,6 +468,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 7,
                             Czas = new TimeSpan(0, 0, 5, 38, 412),
+                            DataPrzejazdu = new DateTime(2019, 8, 30, 15, 56, 4, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 3,
                             IdTor = 2
@@ -467,6 +477,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 8,
                             Czas = new TimeSpan(0, 0, 5, 41, 774),
+                            DataPrzejazdu = new DateTime(2019, 9, 16, 9, 14, 36, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 3,
                             IdTor = 2
@@ -475,6 +486,7 @@ namespace GokartyProjekt.Migrations
                         {
                             IdPrzejazd = 9,
                             Czas = new TimeSpan(0, 0, 5, 37, 292),
+                            DataPrzejazdu = new DateTime(2020, 8, 17, 12, 37, 40, 0, DateTimeKind.Unspecified),
                             IdGokart = 3,
                             IdKierowca = 3,
                             IdTor = 2
@@ -723,25 +735,25 @@ namespace GokartyProjekt.Migrations
                     b.HasOne("GokartyProjekt.Models.Nadwozie", "Nadwozie")
                         .WithMany("Gokarty")
                         .HasForeignKey("IdNadwozie")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Podwozie", "Podwozie")
                         .WithMany("Gokarty")
                         .HasForeignKey("IdPodwozie")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Silnik", "Silnik")
                         .WithMany("Gokarty")
                         .HasForeignKey("IdSilnik")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Tor", "Tor")
                         .WithMany("Gokarty")
                         .HasForeignKey("IdTor")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -750,7 +762,7 @@ namespace GokartyProjekt.Migrations
                     b.HasOne("GokartyProjekt.Models.Uzytkownik", "Uzytkownik")
                         .WithOne("Kierowca")
                         .HasForeignKey("GokartyProjekt.Models.Kierowca", "IdUzytkownik")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -759,13 +771,13 @@ namespace GokartyProjekt.Migrations
                     b.HasOne("GokartyProjekt.Models.Kierowca", "Kierowca")
                         .WithMany("KierowcaSponsor")
                         .HasForeignKey("IdKierowca")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Sponsor", "Sponsor")
                         .WithMany("KierowcaSponsor")
                         .HasForeignKey("IdSponsor")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -774,13 +786,13 @@ namespace GokartyProjekt.Migrations
                     b.HasOne("GokartyProjekt.Models.Tor", "Tor")
                         .WithMany("Pracownicy")
                         .HasForeignKey("IdTor")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Uzytkownik", "Uzytkownik")
                         .WithOne("Pracownik")
                         .HasForeignKey("GokartyProjekt.Models.Pracownik", "IdUzytkownik")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -789,19 +801,19 @@ namespace GokartyProjekt.Migrations
                     b.HasOne("GokartyProjekt.Models.Gokart", "Gokart")
                         .WithMany("Przejazdy")
                         .HasForeignKey("IdGokart")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Kierowca", "Kierowca")
                         .WithMany("Przejazdy")
                         .HasForeignKey("IdKierowca")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Tor", "Tor")
                         .WithMany("Przejazdy")
                         .HasForeignKey("IdTor")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -809,7 +821,8 @@ namespace GokartyProjekt.Migrations
                 {
                     b.HasOne("GokartyProjekt.Models.Kierowca", "Kierowca")
                         .WithMany("Sprzety")
-                        .HasForeignKey("IdKierowca");
+                        .HasForeignKey("IdKierowca")
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("GokartyProjekt.Models.Tor", b =>
@@ -817,7 +830,7 @@ namespace GokartyProjekt.Migrations
                     b.HasOne("GokartyProjekt.Models.Adres", "Adres")
                         .WithOne("Tor")
                         .HasForeignKey("GokartyProjekt.Models.Tor", "IdAdres")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

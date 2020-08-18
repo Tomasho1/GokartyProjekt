@@ -50,7 +50,7 @@ namespace GokartyProjekt.Models
 
                 opt.HasOne(p => p.Tor)
                     .WithOne(p => p.Adres)
-                    .HasForeignKey<Tor>(p => p.IdAdres);
+                    .HasForeignKey<Tor>(p => p.IdAdres).OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -66,19 +66,19 @@ namespace GokartyProjekt.Models
 
                 opt.HasMany(p => p.Przejazdy)
                     .WithOne(p => p.Gokart)
-                    .HasForeignKey(p => p.IdGokart);
+                    .HasForeignKey(p => p.IdGokart).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasOne(p => p.Nadwozie)
                     .WithMany(p => p.Gokarty)
-                    .HasForeignKey(p => p.IdNadwozie);
+                    .HasForeignKey(p => p.IdNadwozie).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasOne(p => p.Podwozie)
                     .WithMany(p => p.Gokarty)
-                    .HasForeignKey(p => p.IdPodwozie);
+                    .HasForeignKey(p => p.IdPodwozie).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasOne(p => p.Silnik)
                     .WithMany(p => p.Gokarty)
-                    .HasForeignKey(p => p.IdSilnik);
+                    .HasForeignKey(p => p.IdSilnik).OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -100,19 +100,19 @@ namespace GokartyProjekt.Models
 
                 opt.HasMany(p => p.Sprzety)
                      .WithOne(p => p.Kierowca)
-                     .HasForeignKey(p => p.IdKierowca);
+                     .HasForeignKey(p => p.IdKierowca).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasMany(p => p.KierowcaSponsor)
                     .WithOne(p => p.Kierowca)
-                    .HasForeignKey(p => p.IdKierowca);
+                    .HasForeignKey(p => p.IdKierowca).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasMany(p => p.Przejazdy)
                     .WithOne(p => p.Kierowca)
-                    .HasForeignKey(p => p.IdKierowca);
+                    .HasForeignKey(p => p.IdKierowca).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasOne(p => p.Uzytkownik)
                     .WithOne(p => p.Kierowca)
-                    .HasForeignKey<Kierowca>(p => p.IdUzytkownik);
+                    .HasForeignKey<Kierowca>(p => p.IdUzytkownik).OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -163,11 +163,11 @@ namespace GokartyProjekt.Models
 
                 opt.HasOne(p => p.Uzytkownik)
                     .WithOne(p => p.Pracownik)
-                    .HasForeignKey<Pracownik>(p => p.IdUzytkownik);
+                    .HasForeignKey<Pracownik>(p => p.IdUzytkownik).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasOne(p => p.Tor)
                     .WithMany(p => p.Pracownicy)
-                    .HasForeignKey(p => p.IdTor);
+                    .HasForeignKey(p => p.IdTor).OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -188,7 +188,7 @@ namespace GokartyProjekt.Models
 
                 opt.HasOne(p => p.Tor)
                     .WithMany(p => p.Przejazdy)
-                    .HasForeignKey(p => p.IdTor);
+                    .HasForeignKey(p => p.IdTor).OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -211,7 +211,7 @@ namespace GokartyProjekt.Models
 
                 opt.HasMany(p => p.KierowcaSponsor)
                     .WithOne(p => p.Sponsor)
-                    .HasForeignKey(p => p.IdSponsor);
+                    .HasForeignKey(p => p.IdSponsor).OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -244,7 +244,7 @@ namespace GokartyProjekt.Models
 
                 opt.HasMany(p => p.Gokarty)
                     .WithOne(p => p.Tor)
-                    .HasForeignKey(p => p.IdTor);
+                    .HasForeignKey(p => p.IdTor).OnDelete(DeleteBehavior.NoAction);
 
             });
 
