@@ -20,7 +20,6 @@ namespace GokartyProjekt.Models
         public DbSet<Sponsor> Sponsorzy { get; set; }
         public DbSet<Sprzet> Sprzety { get; set; }
         public DbSet<Tor> Tory { get; set; }
-        public DbSet<Uzytkownik> Uzytkownicy { get; set; }
 
         public GokartyDbContext(DbContextOptions options) : base(options)
         {
@@ -110,9 +109,6 @@ namespace GokartyProjekt.Models
                     .WithOne(p => p.Kierowca)
                     .HasForeignKey(p => p.IdKierowca).OnDelete(DeleteBehavior.NoAction);
 
-                opt.HasOne(p => p.Uzytkownik)
-                    .WithOne(p => p.Kierowca)
-                    .HasForeignKey<Kierowca>(p => p.IdUzytkownik).OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -160,10 +156,6 @@ namespace GokartyProjekt.Models
                 opt.Property(p => p.Wynagrodzenie)
                     .HasColumnType("money")
                     .IsRequired();
-
-                opt.HasOne(p => p.Uzytkownik)
-                    .WithOne(p => p.Pracownik)
-                    .HasForeignKey<Pracownik>(p => p.IdUzytkownik).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasOne(p => p.Tor)
                     .WithMany(p => p.Pracownicy)
@@ -246,20 +238,25 @@ namespace GokartyProjekt.Models
                     .WithOne(p => p.Tor)
                     .HasForeignKey(p => p.IdTor).OnDelete(DeleteBehavior.NoAction);
 
+                opt.HasOne(p => p.Wlasciciel)
+                   .WithOne(p => p.Tor)
+                   .HasForeignKey<Tor>(p => p.IdWlasciciel).OnDelete(DeleteBehavior.NoAction);
+
             });
 
 
-            modelBuilder.Entity<Uzytkownik>(opt =>
+            modelBuilder.Entity<Wlasciciel>(opt =>
             {
-                opt.HasKey(p => p.IdUzytkownik);
+                opt.HasKey(p => p.IdWlasciciel);
 
-                opt.Property(p => p.IdUzytkownik).ValueGeneratedOnAdd();
+                opt.Property(p => p.IdWlasciciel).ValueGeneratedOnAdd();
 
-                opt.Property(p => p.Login)
-                    .HasMaxLength(30);
+                opt.Property(p => p.Imie)
+                    .IsRequired();
 
-                opt.Property(p => p.Haslo)
-                    .HasMaxLength(30);
+                opt.Property(p => p.Nazwisko)
+                    .IsRequired();
+
             });
 
             SeedData(modelBuilder);
@@ -337,7 +334,6 @@ namespace GokartyProjekt.Models
                 Nazwisko = "Kowalski",
                 Wiek = 21,
                 NumerKarty = "k1704",
-                IdUzytkownik = 1
             });;
 
             Kierowcy.Add(new Kierowca
@@ -347,7 +343,6 @@ namespace GokartyProjekt.Models
                 Nazwisko = "Pędziwiatr",
                 Wiek = 16,
                 NumerKarty = "k898",
-                IdUzytkownik = 2
             });;
 
             Kierowcy.Add(new Kierowca
@@ -357,7 +352,6 @@ namespace GokartyProjekt.Models
                 Nazwisko = "Mazur",
                 Wiek = 18,
                 NumerKarty = "k19",
-                IdUzytkownik = 3
             });;
 
             //Kierowcy-Sponsorzy
@@ -431,7 +425,6 @@ namespace GokartyProjekt.Models
                 Stanowisko = "Recepcjonista",
                 Wynagrodzenie = 3300,
                 IdTor = 1,
-                IdUzytkownik = 1
              });;
 
             Pracownicy.Add(new Pracownik
@@ -443,7 +436,6 @@ namespace GokartyProjekt.Models
                 Stanowisko = "Instruktor",
                 Wynagrodzenie = 4500,
                 IdTor = 2,
-                IdUzytkownik = 2
             });;
 
             Pracownicy.Add(new Pracownik
@@ -455,7 +447,6 @@ namespace GokartyProjekt.Models
                 Stanowisko = "Kierownik toru",
                 Wynagrodzenie = 5500,
                 IdTor = 3,
-                IdUzytkownik = 3
             });;
 
             //Przejazdy
@@ -630,7 +621,8 @@ namespace GokartyProjekt.Models
                 Nazwa = "Autodromo Nazionale di Monza",
                 Dlugosc = 5.793,
                 StawkaGodzinowa = 400,
-                IdAdres = 1
+                IdAdres = 1,
+                IdWlasciciel = 3
             });;
 
             Tory.Add(new Tor
@@ -639,7 +631,8 @@ namespace GokartyProjekt.Models
                 Nazwa = "Circuit de Spa-Francorchamps",
                 Dlugosc = 7.004,
                 StawkaGodzinowa = 450,
-                IdAdres = 2
+                IdAdres = 2,
+                IdWlasciciel = 2
             });;
 
             Tory.Add(new Tor
@@ -648,51 +641,31 @@ namespace GokartyProjekt.Models
                 Nazwa = "Circuit Zandvoort",
                 Dlugosc = 4.252,
                 StawkaGodzinowa = 350,
-                IdAdres = 3
+                IdAdres = 3,
+                IdWlasciciel = 1
             });;
 
-            //Uzytkownicy
-            var Uzytkownicy = new List<Uzytkownik>();
-            Uzytkownicy.Add(new Uzytkownik
+            //Wlasciciele
+            var Wlasciciele = new List<Wlasciciel>();
+            Wlasciciele.Add(new Wlasciciel
             {
-                IdUzytkownik = 1,
-                Login = "tkowalski",
-                Haslo = "kowalski12",
+                IdWlasciciel = 1,
+                Imie = "Max",
+                Nazwisko = "Verstappen",
             });;
 
-            Uzytkownicy.Add(new Uzytkownik
+            Wlasciciele.Add(new Wlasciciel
             {
-                IdUzytkownik = 2,
-                Login = "mpedzi",
-                Haslo = "pedziwiatr2016",
+                IdWlasciciel = 2,
+                Imie = "Stoffel",
+                Nazwisko = "Vandoorne",
             });;
 
-            Uzytkownicy.Add(new Uzytkownik
+            Wlasciciele.Add(new Wlasciciel
             {
-                IdUzytkownik = 3,
-                Login = "jmazur",
-                Haslo = "mazurek",
-            });;
-
-            Uzytkownicy.Add(new Uzytkownik
-            {
-                IdUzytkownik = 4,
-                Login = "pwojcik",
-                Haslo = "wojcik95",
-            });;
-
-            Uzytkownicy.Add(new Uzytkownik
-            {
-                IdUzytkownik = 5,
-                Login = "rwalczak",
-                Haslo = "walczakxd",
-            });;
-
-            Uzytkownicy.Add(new Uzytkownik
-            {
-                IdUzytkownik = 6,
-                Login = "krzysiu44",
-                Haslo = "krzysiekblyskawica",
+                IdWlasciciel = 3,
+                Imie = "Antonio",
+                Nazwisko = "Giovinazzi",
             }); ;
 
             //Dodanie
@@ -708,7 +681,7 @@ namespace GokartyProjekt.Models
             modelBuilder.Entity<Sponsor>().HasData(Sponsorzy);
             modelBuilder.Entity<Sprzet>().HasData(Sprzety);
             modelBuilder.Entity<Tor>().HasData(Tory);
-            modelBuilder.Entity<Uzytkownik>().HasData(Uzytkownicy);
+            modelBuilder.Entity<Wlasciciel>().HasData(Wlasciciele);
         }
     }
 }

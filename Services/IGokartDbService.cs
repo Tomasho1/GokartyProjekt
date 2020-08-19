@@ -15,7 +15,7 @@ namespace GokartyProjekt.Services
         public UniversalFastestLapOnGivenTrackResponse FastestLapOnGivenTrackInMonth(int IdTor);
         public PersonalBestOnGivenTrackResponse PersonalBestOnGivenTrack(int IdKierowca, int IdTor);
         public void AddNewLapTime(AddNewLapTimeRequest request);
-        // TODO: Ręczne dodawanie czasów, porównywanie z innymi kierowcami
+        // TODO: Porównywanie z innymi kierowcami, wyświetlanie wszystkich czasów danego kierowcy z deltą względem najszybsze
 
 
     }

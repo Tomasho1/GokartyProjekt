@@ -12,9 +12,7 @@ namespace GokartyProjekt.Models
         public string Nazwisko { get; set; }
         public int Wiek { get; set; }
         public string NumerKarty { get; set; }
-        public int IdUzytkownik { get; set; }
 
-        public Uzytkownik Uzytkownik { get; set; }
         public ICollection<KierowcaSponsor> KierowcaSponsor { get; set; }
         public ICollection<Sprzet> Sprzety { get; set; }
         public ICollection<Przejazd> Przejazdy { get; set; }
