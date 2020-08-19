@@ -11,6 +11,6 @@ namespace GokartyProjekt.Models
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
 
-        public Tor Tor { get; set; }
+        public ICollection<Tor> Tory { get; set; }
     }
 }

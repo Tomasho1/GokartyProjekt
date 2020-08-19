@@ -239,8 +239,8 @@ namespace GokartyProjekt.Models
                     .HasForeignKey(p => p.IdTor).OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasOne(p => p.Wlasciciel)
-                   .WithOne(p => p.Tor)
-                   .HasForeignKey<Tor>(p => p.IdWlasciciel).OnDelete(DeleteBehavior.NoAction);
+                   .WithMany(p => p.Tory)
+                   .HasForeignKey(p => p.IdWlasciciel).OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -272,7 +272,7 @@ namespace GokartyProjekt.Models
                 Panstwo = "Włochy",
                 Miasto = "Monza",
                 Ulica = "Viale di Vedano, 5"
-            });;
+            });
 
             Adresy.Add(new Adres
             {
@@ -280,7 +280,7 @@ namespace GokartyProjekt.Models
                 Panstwo = "Belgia",
                 Miasto = "Stavelot",
                 Ulica = "Route du Circuit 55"
-            });;
+            });
 
             Adresy.Add(new Adres
             {
@@ -288,7 +288,7 @@ namespace GokartyProjekt.Models
                 Panstwo = "Holandia",
                 Miasto = "Zandvoort",
                 Ulica = "Burgemeester van Alphenstraat 108"
-            });;
+            });
 
             //Gokarty
             var Gokarty = new List<Gokart>();
@@ -301,7 +301,7 @@ namespace GokartyProjekt.Models
                IdNadwozie = 2,
                IdPodwozie = 2,
                IdTor = 3
-            });;
+            });
 
             Gokarty.Add(new Gokart
             {
@@ -312,7 +312,7 @@ namespace GokartyProjekt.Models
                IdNadwozie = 1,
                IdPodwozie = 1,
                IdTor = 1
-            });;
+            });
 
             Gokarty.Add(new Gokart
             {
@@ -323,7 +323,7 @@ namespace GokartyProjekt.Models
                 IdNadwozie = 3,
                 IdPodwozie = 3,
                 IdTor = 2
-            });;
+            });
 
             //Kierowcy
             var Kierowcy = new List<Kierowca>();
@@ -334,7 +334,7 @@ namespace GokartyProjekt.Models
                 Nazwisko = "Kowalski",
                 Wiek = 21,
                 NumerKarty = "k1704",
-            });;
+            });
 
             Kierowcy.Add(new Kierowca
             {
@@ -343,7 +343,7 @@ namespace GokartyProjekt.Models
                 Nazwisko = "Pędziwiatr",
                 Wiek = 16,
                 NumerKarty = "k898",
-            });;
+            });
 
             Kierowcy.Add(new Kierowca
             {
@@ -352,7 +352,7 @@ namespace GokartyProjekt.Models
                 Nazwisko = "Mazur",
                 Wiek = 18,
                 NumerKarty = "k19",
-            });;
+            });
 
             //Kierowcy-Sponsorzy
             var KierowcySponsorzy = new List<KierowcaSponsor>();
@@ -360,19 +360,19 @@ namespace GokartyProjekt.Models
             {
                 IdKierowca = 1,
                 IdSponsor = 2
-            });;
+            });
 
             KierowcySponsorzy.Add(new KierowcaSponsor
             {
                 IdKierowca = 2,
                 IdSponsor = 1
-            });;
+            });
 
             KierowcySponsorzy.Add(new KierowcaSponsor
             {
                 IdKierowca = 3,
                 IdSponsor = 3
-            });;
+            });
 
             //Nadwozia
             var Nadwozia = new List<Nadwozie>();
@@ -380,19 +380,19 @@ namespace GokartyProjekt.Models
             {
                 IdNadwozie = 1,
                 Producent = "Alfa Romeo"
-            });;
+            });
 
             Nadwozia.Add(new Nadwozie
             {
                 IdNadwozie = 2,
                 Producent = "Honda"
-            });;
+            });
 
             Nadwozia.Add(new Nadwozie
             {
                 IdNadwozie = 3,
                 Producent = "Chevrolet"
-            }); ;
+            });
 
             //Podwozia
             var Podwozia = new List<Podwozie>();
@@ -400,19 +400,19 @@ namespace GokartyProjekt.Models
             {
                 IdPodwozie = 1,
                 Producent = "Alfa Romeo"
-            });;
+            });
 
             Podwozia.Add(new Podwozie
             {
                 IdPodwozie = 2,
                 Producent = "Honda"
-            });;
+            });
 
             Podwozia.Add(new Podwozie
             {
                 IdPodwozie = 3,
                 Producent = "Chevrolet"
-            });;
+            });
 
             //Pracownicy
             var Pracownicy = new List<Pracownik>();
@@ -425,7 +425,7 @@ namespace GokartyProjekt.Models
                 Stanowisko = "Recepcjonista",
                 Wynagrodzenie = 3300,
                 IdTor = 1,
-             });;
+             });
 
             Pracownicy.Add(new Pracownik
             {
@@ -436,7 +436,7 @@ namespace GokartyProjekt.Models
                 Stanowisko = "Instruktor",
                 Wynagrodzenie = 4500,
                 IdTor = 2,
-            });;
+            });
 
             Pracownicy.Add(new Pracownik
             {
@@ -447,7 +447,7 @@ namespace GokartyProjekt.Models
                 Stanowisko = "Kierownik toru",
                 Wynagrodzenie = 5500,
                 IdTor = 3,
-            });;
+            });
 
             //Przejazdy
             var Przejazdy = new List<Przejazd>();
@@ -459,7 +459,7 @@ namespace GokartyProjekt.Models
                 IdTor = 1,
                 IdGokart = 3,
                 IdKierowca = 1
-            });;
+            });
 
             Przejazdy.Add(new Przejazd
             {
@@ -469,7 +469,7 @@ namespace GokartyProjekt.Models
                 IdTor = 1,
                 IdGokart = 3,
                 IdKierowca = 1
-            });;
+            });
 
             Przejazdy.Add(new Przejazd
             {
@@ -479,7 +479,7 @@ namespace GokartyProjekt.Models
                 IdTor = 1,
                 IdGokart = 3,
                 IdKierowca = 1
-            });;
+            });
 
             Przejazdy.Add(new Przejazd
             {
@@ -489,7 +489,7 @@ namespace GokartyProjekt.Models
                 IdTor = 3,
                 IdGokart = 3,
                 IdKierowca = 2,
-            });;
+            });
 
             Przejazdy.Add(new Przejazd
             {
@@ -499,7 +499,7 @@ namespace GokartyProjekt.Models
                 IdTor = 3,
                 IdGokart = 3,
                 IdKierowca = 2,
-            });;
+            });
 
             Przejazdy.Add(new Przejazd
             {
@@ -509,7 +509,7 @@ namespace GokartyProjekt.Models
                 IdTor = 3,
                 IdGokart = 3,
                 IdKierowca = 2,
-            });;
+            });
 
             Przejazdy.Add(new Przejazd
             {
@@ -519,7 +519,7 @@ namespace GokartyProjekt.Models
                 IdTor = 2,
                 IdGokart = 3,
                 IdKierowca = 3,
-            });;
+            });
 
 
             Przejazdy.Add(new Przejazd
@@ -530,7 +530,8 @@ namespace GokartyProjekt.Models
                 IdTor = 2,
                 IdGokart = 3,
                 IdKierowca = 3,
-            });;
+            });
+
             Przejazdy.Add(new Przejazd
             {
                 IdPrzejazd = 9,
@@ -539,7 +540,7 @@ namespace GokartyProjekt.Models
                 IdTor = 2,
                 IdGokart = 3,
                 IdKierowca = 3,
-            }); ;
+            });
 
             //Silniki
             var Silniki = new List<Silnik>();
@@ -549,7 +550,7 @@ namespace GokartyProjekt.Models
                 Moc = 20,
                 Pojemnosc = 600,
                 Producent = "Mercedes"
-            });;
+            });
 
             Silniki.Add(new Silnik
             {
@@ -557,7 +558,7 @@ namespace GokartyProjekt.Models
                 Moc = 15,
                 Pojemnosc = 350,
                 Producent = "Audi"
-            });;
+            });
 
             Silniki.Add(new Silnik
             {
@@ -565,7 +566,7 @@ namespace GokartyProjekt.Models
                 Moc = 25,
                 Pojemnosc = 800,
                 Producent = "Ferrari"
-            });;
+            });
 
             //Sponsorzy
             var Sponsorzy = new List<Sponsor>();
@@ -573,19 +574,19 @@ namespace GokartyProjekt.Models
             {
                 IdSponsor = 1,
                 Nazwa = "ORLEN"
-            });;
+            });
 
             Sponsorzy.Add(new Sponsor
             {
                 IdSponsor = 2,
                 Nazwa = "STS"
-            });;
+            });
 
             Sponsorzy.Add(new Sponsor
             {
                 IdSponsor = 3,
                 Nazwa = "PEKAO"
-            });;
+            });
 
             //Sprzety
             var Sprzety = new List<Sprzet>();
@@ -595,7 +596,7 @@ namespace GokartyProjekt.Models
                 Nazwa = "Kask czerwony mały",
                 Koszt = 25.0,
                 IdKierowca = 1
-            });;
+            });
 
             Sprzety.Add(new Sprzet
             {
@@ -603,7 +604,7 @@ namespace GokartyProjekt.Models
                 Nazwa = "Rękawice czarne normalne",
                 Koszt = 15,
                 IdKierowca = null
-            });;
+            });
 
             Sprzety.Add(new Sprzet
             {
@@ -611,7 +612,7 @@ namespace GokartyProjekt.Models
                 Nazwa = "Kominiarka normalna",
                 Koszt = 10,
                 IdKierowca = 3
-            });;
+            });
 
             //Tory
             var Tory = new List<Tor>();
@@ -623,7 +624,7 @@ namespace GokartyProjekt.Models
                 StawkaGodzinowa = 400,
                 IdAdres = 1,
                 IdWlasciciel = 3
-            });;
+            });
 
             Tory.Add(new Tor
             {
@@ -633,7 +634,7 @@ namespace GokartyProjekt.Models
                 StawkaGodzinowa = 450,
                 IdAdres = 2,
                 IdWlasciciel = 2
-            });;
+            });
 
             Tory.Add(new Tor
             {
@@ -643,7 +644,7 @@ namespace GokartyProjekt.Models
                 StawkaGodzinowa = 350,
                 IdAdres = 3,
                 IdWlasciciel = 1
-            });;
+            });
 
             //Wlasciciele
             var Wlasciciele = new List<Wlasciciel>();
@@ -652,21 +653,21 @@ namespace GokartyProjekt.Models
                 IdWlasciciel = 1,
                 Imie = "Max",
                 Nazwisko = "Verstappen",
-            });;
+            });
 
             Wlasciciele.Add(new Wlasciciel
             {
                 IdWlasciciel = 2,
                 Imie = "Stoffel",
                 Nazwisko = "Vandoorne",
-            });;
+            });
 
             Wlasciciele.Add(new Wlasciciel
             {
                 IdWlasciciel = 3,
                 Imie = "Antonio",
                 Nazwisko = "Giovinazzi",
-            }); ;
+            });
 
             //Dodanie
             modelBuilder.Entity<Adres>().HasData(Adresy);

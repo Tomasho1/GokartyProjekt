@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GokartyProjekt.Migrations
 {
     [DbContext(typeof(GokartyDbContext))]
-    [Migration("20200819185547_AddedWlascicielDeletedUzytkownikTable")]
-    partial class AddedWlascicielDeletedUzytkownikTable
+    [Migration("20200819192053_AddedWlascicielTableRemovedUzytkownicyTable")]
+    partial class AddedWlascicielTableRemovedUzytkownicyTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -630,8 +630,7 @@ namespace GokartyProjekt.Migrations
                     b.HasIndex("IdAdres")
                         .IsUnique();
 
-                    b.HasIndex("IdWlasciciel")
-                        .IsUnique();
+                    b.HasIndex("IdWlasciciel");
 
                     b.ToTable("Tory");
 
@@ -794,8 +793,8 @@ namespace GokartyProjekt.Migrations
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Wlasciciel", "Wlasciciel")
-                        .WithOne("Tor")
-                        .HasForeignKey("GokartyProjekt.Models.Tor", "IdWlasciciel")
+                        .WithMany("Tory")
+                        .HasForeignKey("IdWlasciciel")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });

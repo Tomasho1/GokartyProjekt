@@ -628,8 +628,7 @@ namespace GokartyProjekt.Migrations
                     b.HasIndex("IdAdres")
                         .IsUnique();
 
-                    b.HasIndex("IdWlasciciel")
-                        .IsUnique();
+                    b.HasIndex("IdWlasciciel");
 
                     b.ToTable("Tory");
 
@@ -792,8 +791,8 @@ namespace GokartyProjekt.Migrations
                         .IsRequired();
 
                     b.HasOne("GokartyProjekt.Models.Wlasciciel", "Wlasciciel")
-                        .WithOne("Tor")
-                        .HasForeignKey("GokartyProjekt.Models.Tor", "IdWlasciciel")
+                        .WithMany("Tory")
+                        .HasForeignKey("IdWlasciciel")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
